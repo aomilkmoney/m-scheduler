@@ -8,7 +8,7 @@
       </v-col>
 
       <v-col v-for="week in weeks" :key="week.throughDates" cols="1">
-        <v-card>
+        <v-card style="height: 76px">
           <v-card-text>3/22 - 3/28 </v-card-text>
         </v-card>
       </v-col>
