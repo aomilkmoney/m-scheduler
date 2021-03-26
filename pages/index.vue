@@ -46,6 +46,14 @@
                 :style="appointment.marginLeft + appointment.width"
                 >Lamar</v-btn
               >
+              <v-btn
+                class="mt-7"
+                small
+                rounded
+                color="primary"
+                :style="appointment.marginLeft + appointment.width"
+                >Lamar</v-btn
+              >
             </v-card>
           </v-col>
         </v-row>
@@ -130,7 +138,7 @@ export default {
           id: 'adsagrsedazfa',
           vendorName: 'Lamar',
           width: 'width: 20%',
-          marginLeft: 'margin-left: 230px;',
+          marginLeft: 'margin-left: 30px;',
         },
       ],
     }
