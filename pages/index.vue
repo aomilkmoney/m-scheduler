@@ -1,19 +1,27 @@
 <template>
-  <v-container style="max-height: 800px; overflow-y: scroll; min-width: 800px">
-    <v-row no-gutters>
+  <v-container
+    style="
+      padding: 20px;
+      max-height: 800px;
+      overflow-y: scroll;
+      overflow-x: scroll;
+      max-width: 1200px;
+    "
+  >
+    <v-row no-gutters style="">
       <v-row
         no-gutters
         style="
           position: fixed;
+          max-width: 1200px;
           overflow-x: scroll;
-          min-width: 800px;
           height: 83px;
           z-index: 2;
         "
       >
-        <v-col cols="4">
-          <v-card style="height: 83px">
-            <v-card-text> Inventory Item </v-card-text>
+        <v-col cols="4" style="max-width: 373.333">
+          <v-card>
+            <v-card-text style="height: 83px"> Inventory Item </v-card-text>
           </v-card>
         </v-col>
         <v-col cols="8">
@@ -21,7 +29,7 @@
             <v-col
               v-for="week in weeks"
               :key="week.throughDates"
-              style="min-width: 50px"
+              style="min-width: 76px"
               cols="1"
             >
               <v-card style="height: 83px">
