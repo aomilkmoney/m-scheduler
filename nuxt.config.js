@@ -23,7 +23,10 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['@/plugins/vue-scroll-sync'],
+  plugins: [
+    '@/plugins/vue-scroll-sync',
+    { src: '~/node_modules/@milkmoney/m-dialog/index.js', ssr: true },
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
