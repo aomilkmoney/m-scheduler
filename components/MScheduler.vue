@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container style="max-width: 1200px">
     <v-row no-gutters>
       <v-col cols="3">
         <v-btn
