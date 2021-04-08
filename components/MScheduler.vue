@@ -25,7 +25,7 @@
           id="fixed-header-row"
           class="flex-nowrap"
           no-gutters
-          style="overflow-x: scroll"
+          style="overflow: hidden"
           @scroll="scrollLinkHorizontal"
         >
           <v-col cols="2">
@@ -104,7 +104,7 @@
       <v-col
         id="fixed-sidebar"
         cols="3"
-        style="overflow-y: scroll; overflow-x: hidden; max-height: 722px"
+        style="overflow: hidden; max-height: 722px"
         @scroll="scrollLinkVertical"
       >
         <v-row>
