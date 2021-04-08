@@ -11,7 +11,16 @@
           Add Blackout Dates
         </v-btn>
       </v-col>
-      <v-col cols="9">
+      <v-col cols="9" style="position: relative">
+        <v-btn
+          id="calendar-arrow-left"
+          text
+          x-small
+          style="position: absolute; left: -45px; top: 15px; z-index: 3"
+          @click="backAWeek"
+        >
+          <v-icon> mdi-arrow-left </v-icon>
+        </v-btn>
         <v-row
           id="fixed-header-row"
           class="flex-nowrap"
@@ -80,6 +89,15 @@
             </v-card>
           </v-col>
         </v-row>
+        <v-btn
+          id="calendar-arrow-right"
+          text
+          x-small
+          style="position: absolute; right: -45px; top: 15px; z-index: 3"
+          @click="forwardAWeek"
+        >
+          <v-icon> mdi-arrow-right </v-icon>
+        </v-btn>
       </v-col>
     </v-row>
     <v-row no-gutters>
@@ -256,14 +274,12 @@ export default {
   data() {
     return {
       blackoutDialogID: null,
-      startDate: new Date().toISOString().substr(0, 10),
+      blackoutDialog: false,
       endDate: new Date().toISOString().substr(0, 10),
-      statuses: ['Booked', 'On Hold'],
       menu: false,
       menu2: false,
-      blackoutDialog: false,
-      horizontalDebounce: true,
-      verticalDebounce: true,
+      startDate: new Date().toISOString().substr(0, 10),
+      statuses: ['Booked', 'On Hold'],
       weeks: [
         { throughDates: '3/22-3/29' },
         { throughDates: '3/22-3/29' },
@@ -556,23 +572,22 @@ export default {
       ],
     }
   },
-  // mounted() {
-  //   const fixedHeader = document.getElementById('fixed-header-row')
-  //   fixedHeader.onscroll = this.scrollLinkHorizontal
-  //   const blackoutContainer = document.getElementById('blackout-container')
-  //   blackoutContainer.onscroll = this.scrollLinkHorizontal
-  // },
   methods: {
     allowedEndDates: (val) => new Date(val).getDay() === 6,
     allowedStartDates: (val) => new Date(val).getDay() === 0,
+    backAWeek() {
+      console.log('Move cal back a week')
+    },
+    forwardAWeek() {
+      console.log('Move cal forward a week')
+    },
     openBlackoutDialog(event) {
       this.blackoutDialog = true
       this.blackoutDialogID = event.target.id
       console.log(event.target)
     },
     scrollLinkHorizontal(event) {
-      if (this.horizontalDebounce) {
-        this.horizontalDebounce = false
+      if (event.target.matches(':hover')) {
         if (event.target.id === 'fixed-header-row') {
           const linkedContainer = document.getElementById('blackout-container')
           linkedContainer.scrollLeft = event.target.scrollLeft
@@ -580,15 +595,11 @@ export default {
           const linkedContainer = document.getElementById('fixed-header-row')
           linkedContainer.scrollLeft = event.target.scrollLeft
         }
-        setTimeout(() => {
-          this.horizontalDebounce = true
-        }, 50)
       }
     },
     scrollLinkVertical(event) {
       console.log('scrollLinkVertical triggered')
-      if (this.verticalDebounce) {
-        this.verticalDebounce = false
+      if (event.target.matches(':hover')) {
         if (event.target.id === 'fixed-sidebar') {
           const linkedContainer = document.getElementById('blackout-container')
           linkedContainer.scrollTop = event.target.scrollTop
@@ -596,9 +607,6 @@ export default {
           const linkedContainer = document.getElementById('fixed-sidebar')
           linkedContainer.scrollTop = event.target.scrollTop
         }
-        setTimeout(() => {
-          this.verticalDebounce = true
-        }, 50)
       }
     },
     scrollLinkBothDirections(event) {
